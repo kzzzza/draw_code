@@ -2,6 +2,7 @@
 #include "draw.h"
 #include "bmp.h"
 #include "char.h"
+#include "ball.h"
 
 int main() {
     int width, height;
@@ -58,6 +59,30 @@ int main() {
     printf("Displaying Chinese characters...\n");
     draw_hanzi_string(200, height - 100, "你好，世界！", COLOR_WHITE);
     draw_hanzi_string(200, height - 70, "杨凯越，南京大学", COLOR_WHITE);
+
+    // ==================== 功能5: 小球动画 ====================
+    sleep(10); // 暂停2秒，准备显示小球动画
+
+    graphics_clear(0x00000000);
+
+    Ball ball;
+    ball_init(&ball, 400, 300, 20, 5, 3, COLOR_RED);
+
+    // 动画循环
+    while (1) {
+        // 清屏
+        graphics_clear(0x00000000);
+
+        // 更新小球位置
+        ball_update(&ball, width, height);
+
+        // 绘制小球
+        ball_draw(&ball);
+
+        // 延迟 16 毫秒（约 60 FPS）
+        usleep(16000);
+    }
+
 
     // 清理图形系统
     graphics_cleanup();
