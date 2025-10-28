@@ -54,7 +54,11 @@ int main() {
     draw_char(70, height - 70, 'J', COLOR_WHITE);
     draw_char(90, height - 70, 'U', COLOR_WHITE);
 
-    
+    // ==================== 功能4: 显示汉字字符串 ====================
+    printf("Displaying Chinese characters...\n");
+    draw_hanzi_string(200, height - 100, "你好，世界！", COLOR_WHITE);
+    draw_hanzi_string(200, height - 70, "杨凯越，南京大学", COLOR_WHITE);
+
     // 清理图形系统
     graphics_cleanup();
     
