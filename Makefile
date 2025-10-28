@@ -1,6 +1,6 @@
 CC = loongarch64-linux-gnu-gcc
 CFLAGS = -Wall -Wextra -O2
-SOURCES = main.c draw.c bmp.c
+SOURCES = main.c draw.c bmp.c char.c
 HEADERS = draw.h
 TARGET = graphics_app
 

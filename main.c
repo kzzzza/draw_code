@@ -1,6 +1,7 @@
 // filepath: /home/kz/my_code/draw_code/project/main.c
 #include "draw.h"
 #include "bmp.h"
+#include "char.h"
 
 int main() {
     int width, height;
@@ -45,6 +46,14 @@ int main() {
     } else {
         fprintf(stderr, "Failed to load BMP image\n");
     }   
+
+    // ==================== 功能3: 显示字符和字符串 ====================
+    printf("Displaying characters and strings...\n");
+    draw_string(50, height - 100, "231180007YKY!", COLOR_WHITE);
+    draw_char(50, height - 70, 'N', COLOR_WHITE);
+    draw_char(70, height - 70, 'J', COLOR_WHITE);
+    draw_char(90, height - 70, 'U', COLOR_WHITE);
+
     
     // 清理图形系统
     graphics_cleanup();
