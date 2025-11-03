@@ -70,8 +70,6 @@ int main() {
 
     // 动画循环
     while (1) {
-        // 清屏
-        graphics_clear(0x00000000);
 
         // 更新小球位置
         ball_update(&ball, width, height);
