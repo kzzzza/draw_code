@@ -12,7 +12,13 @@ int main() {
         fprintf(stderr, "Failed to initialize graphics\n");
         return 1;
     }
-    
+
+    // 加载 HZK16 字库
+    if (load_hzk16_font("HZK16") != 0) {
+        graphics_cleanup();
+        return 1;
+    }
+
     // 获取屏幕分辨率
     graphics_get_resolution(&width, &height);
     printf("Screen resolution: %dx%d\n", width, height);
@@ -59,13 +65,13 @@ int main() {
 
     // ==================== 功能4: 显示汉字字符串 ====================
     printf("Displaying Chinese characters...\n");
-    draw_hanzi_string(100, height - 100, "你好，世界！", COLOR_BLACK);
-    draw_hanzi_string(100, height - 70, "杨凯越，南京大学", COLOR_BLACK);
+    draw_hzk16_string(100, 100, (const unsigned char *)"你好，世界！", 0x00FF00FF); // 紫色
 
     // ==================== 功能5: 小球动画 ====================
     sleep(10); // 暂停10秒，准备显示小球动画
 
     graphics_clear(0x00000000);
+
 
     Ball ball;
     ball_init(&ball, 400, 300, 20, 5, 3, COLOR_RED);
@@ -85,6 +91,7 @@ int main() {
 
     // 清理图形系统
     graphics_cleanup();
+    free_hzk16_font();
     
     printf("Program completed successfully.\n");
     return 0;

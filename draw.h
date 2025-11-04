@@ -12,6 +12,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <sys/stat.h>
 
 // 颜色定义 (ARGB格式)
 #define COLOR_RED        0x00FF0000
