@@ -37,7 +37,7 @@ int main() {
     draw_circle(350, 90, 40, COLOR_BLUE);                 // 蓝色圆形边框
     fill_circle(480, 90, 40, COLOR_YELLOW);               // 填充黄色圆形
     draw_triangle(600, 50, 550, 130, 650, 130, COLOR_CYAN); // 青色三角形
-    
+    sleep(3); // 显示5秒后清屏
     // ==================== 功能2: 加载并显示 BMP 图像 ====================
     printf("Loading and displaying BMP image...\n");
     BMPImage *image = bmp_load("image.bmp");
@@ -47,21 +47,23 @@ int main() {
     } else {
         fprintf(stderr, "Failed to load BMP image\n");
     }   
+    sleep(3); // 显示5秒后清屏
+    graphics_clear(COLOR_YELLOW);
 
     // ==================== 功能3: 显示字符和字符串 ====================
     printf("Displaying characters and strings...\n");
-    draw_string(50, height - 100, "231180007YKY!", COLOR_WHITE);
-    draw_char(50, height - 70, 'N', COLOR_WHITE);
-    draw_char(70, height - 70, 'J', COLOR_WHITE);
-    draw_char(90, height - 70, 'U', COLOR_WHITE);
+    draw_string(50, height - 100, "231180007YKY!", COLOR_BLACK);
+    draw_char(50, height - 70, 'N', COLOR_BLACK);
+    draw_char(70, height - 70, 'J', COLOR_BLACK);
+    draw_char(90, height - 70, 'U', COLOR_BLACK);
 
     // ==================== 功能4: 显示汉字字符串 ====================
     printf("Displaying Chinese characters...\n");
-    draw_hanzi_string(200, height - 100, "你好，世界！", COLOR_WHITE);
-    draw_hanzi_string(200, height - 70, "杨凯越，南京大学", COLOR_WHITE);
+    draw_hanzi_string(100, height - 100, "你好，世界！", COLOR_BLACK);
+    draw_hanzi_string(100, height - 70, "杨凯越，南京大学", COLOR_BLACK);
 
     // ==================== 功能5: 小球动画 ====================
-    sleep(10); // 暂停2秒，准备显示小球动画
+    sleep(10); // 暂停10秒，准备显示小球动画
 
     graphics_clear(0x00000000);
 
@@ -69,8 +71,7 @@ int main() {
     ball_init(&ball, 400, 300, 20, 5, 3, COLOR_RED);
 
     // 动画循环
-    while (1) {
-
+    for(int i=0; i<600; i++) {
         // 更新小球位置
         ball_update(&ball, width, height);
 
