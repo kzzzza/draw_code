@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include <sys/stat.h>
 
-// é¢œè‰²å®šä¹‰ (ARGBæ ¼å¼)
+// ÑÕÉ«¶¨Òå (ARGB¸ñÊ½)
 #define COLOR_RED        0x00FF0000
 #define COLOR_GREEN      0x0000FF00
 #define COLOR_BLUE       0x000000FF
@@ -27,13 +27,13 @@
 #define COLOR_DARKGRAY   0x00404040
 
 
-// ç‚¹ç»“æ„ä½“
+// µã½á¹¹Ìå
 typedef struct {
     int x;
     int y;
 } Point;
 
-// çŸ©å½¢ç»“æ„ä½“
+// ¾ØĞÎ½á¹¹Ìå
 typedef struct {
     int x;
     int y;
@@ -41,12 +41,12 @@ typedef struct {
     int height;
 } Rectangle;
 
-// åˆå§‹åŒ–/æ¸…ç†å‡½æ•°
+// ³õÊ¼»¯/ÇåÀíº¯Êı
 int graphics_init(void);
 void graphics_cleanup(void);
 void graphics_clear(uint32_t color);
 
-// åŸºæœ¬ç»˜å›¾å‡½æ•°
+// »ù±¾»æÍ¼º¯Êı
 void draw_pixel(int x, int y, uint32_t color);
 void draw_line(int x0, int y0, int x1, int y1, uint32_t color);
 void draw_rectangle(int x, int y, int width, int height, uint32_t color);
@@ -55,7 +55,7 @@ void draw_circle(int center_x, int center_y, int radius, uint32_t color);
 void fill_circle(int center_x, int center_y, int radius, uint32_t color);
 void draw_triangle(int x1, int y1, int x2, int y2, int x3, int y3, uint32_t color);
 
-// å·¥å…·å‡½æ•°
+// ¹¤¾ßº¯Êı
 void graphics_get_resolution(int *width, int *height);
 
 #endif // GRAPHICS_H

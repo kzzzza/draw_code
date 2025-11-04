@@ -3,20 +3,20 @@
 
 #include "draw.h"
 
-// BMP å›¾åƒç»“æ„
+// BMP Í¼Ïñ½á¹¹
 typedef struct {
     int width;
     int height;
-    uint32_t *pixels; // åƒç´ æ•°æ® (æ¯ä¸ªåƒç´ ä¸º 32 ä½ ARGB æ ¼å¼)
+    uint32_t *pixels; // ÏñËØÊı¾İ (Ã¿¸öÏñËØÎª 32 Î» ARGB ¸ñÊ½)
 } BMPImage;
 
-// åŠ è½½ BMP å›¾åƒ
+// ¼ÓÔØ BMP Í¼Ïñ
 BMPImage *bmp_load(const char *filename);
 
-// é‡Šæ”¾ BMP å›¾åƒ
+// ÊÍ·Å BMP Í¼Ïñ
 void bmp_free(BMPImage *image);
 
-// æ˜¾ç¤º BMP å›¾åƒ
+// ÏÔÊ¾ BMP Í¼Ïñ
 void bmp_draw(int x, int y, BMPImage *image);
 
 #endif // BMP_H

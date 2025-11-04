@@ -3,21 +3,21 @@
 
 #include "draw.h"
 
-// å°çƒç»“æ„ä½“
+// Ğ¡Çò½á¹¹Ìå
 typedef struct {
-    int x, y;           // å°çƒä½ç½®
-    int radius;         // å°çƒåŠå¾„
-    int dx, dy;         // å°çƒç§»åŠ¨æ–¹å‘ï¼ˆé€Ÿåº¦ï¼‰
-    uint32_t color;     // å°çƒé¢œè‰²
+    int x, y;           // Ğ¡ÇòÎ»ÖÃ
+    int radius;         // Ğ¡Çò°ë¾¶
+    int dx, dy;         // Ğ¡ÇòÒÆ¶¯·½Ïò£¨ËÙ¶È£©
+    uint32_t color;     // Ğ¡ÇòÑÕÉ«
 } Ball;
 
-// åˆå§‹åŒ–å°çƒ
+// ³õÊ¼»¯Ğ¡Çò
 void ball_init(Ball *ball, int x, int y, int radius, int dx, int dy, uint32_t color);
 
-// æ›´æ–°å°çƒä½ç½®
+// ¸üĞÂĞ¡ÇòÎ»ÖÃ
 void ball_update(Ball *ball, int screen_width, int screen_height);
 
-// ç»˜åˆ¶å°çƒ
+// »æÖÆĞ¡Çò
 void ball_draw(Ball *ball);
 
 #endif // BALL_H

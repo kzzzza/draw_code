@@ -2,7 +2,7 @@
 #include "draw.h"
 
 
-// åˆå§‹åŒ–å°çƒ
+// ³õÊ¼»¯Ð¡Çò
 void ball_init(Ball *ball, int x, int y, int radius, int dx, int dy, uint32_t color) {
     ball->x = x;
     ball->y = y;
@@ -12,29 +12,29 @@ void ball_init(Ball *ball, int x, int y, int radius, int dx, int dy, uint32_t co
     ball->color = color;
 }
 
-// æ›´æ–°å°çƒä½ç½®
+// ¸üÐÂÐ¡ÇòÎ»ÖÃ
 void ball_update(Ball *ball, int screen_width, int screen_height) {
-    // ä¿å­˜å°çƒçš„æ—§ä½ç½®
+    // ±£´æÐ¡ÇòµÄ¾ÉÎ»ÖÃ
     int old_x = ball->x;
     int old_y = ball->y;
 
-    // æ›´æ–°ä½ç½®
+    // ¸üÐÂÎ»ÖÃ
     ball->x += ball->dx;
     ball->y += ball->dy;
 
-    // æ£€æµ‹è¾¹ç•Œç¢°æ’ž
+    // ¼ì²â±ß½çÅö×²
     if (ball->x - ball->radius < 0 || ball->x + ball->radius > screen_width) {
-        ball->dx = -ball->dx; // æ°´å¹³æ–¹å‘åå¼¹
+        ball->dx = -ball->dx; // Ë®Æ½·½Ïò·´µ¯
     }
     if (ball->y - ball->radius < 0 || ball->y + ball->radius > screen_height) {
-        ball->dy = -ball->dy; // åž‚ç›´æ–¹å‘åå¼¹
+        ball->dy = -ball->dy; // ´¹Ö±·½Ïò·´µ¯
     }
 
-    // æ“¦é™¤å°çƒçš„æ—§ä½ç½®
-    fill_circle(old_x, old_y, ball->radius, 0x00000000); // ç”¨èƒŒæ™¯è‰²æ¸…é™¤
+    // ²Á³ýÐ¡ÇòµÄ¾ÉÎ»ÖÃ
+    fill_circle(old_x, old_y, ball->radius, 0x00000000); // ÓÃ±³¾°É«Çå³ý
 }
 
-// ç»˜åˆ¶å°çƒ
+// »æÖÆÐ¡Çò
 void ball_draw(Ball *ball) {
     fill_circle(ball->x, ball->y, ball->radius, ball->color);
 }

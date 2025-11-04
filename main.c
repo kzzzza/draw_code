@@ -1,4 +1,3 @@
-// filepath: /home/kz/my_code/draw_code/project/main.c
 #include "draw.h"
 #include "bmp.h"
 #include "char.h"
@@ -7,44 +6,44 @@
 int main() {
     int width, height;
     
-    // åˆå§‹åŒ–å›¾å½¢ç³»ç»Ÿ
+    //³õÊ¼»¯Í¼ĞÎÏµÍ³
     if (graphics_init() != 0) {
         fprintf(stderr, "Failed to initialize graphics\n");
         return 1;
     }
 
-    // åŠ è½½ HZK16 å­—åº“
+    //¼ÓÔØºº×Ö¿â
     if (load_hzk16_font("HZK16") != 0) {
         graphics_cleanup();
         return 1;
     }
 
-    // è·å–å±å¹•åˆ†è¾¨ç‡
+    // »ñÈ¡ÆÁÄ»·Ö±æÂÊ
     graphics_get_resolution(&width, &height);
     printf("Screen resolution: %dx%d\n", width, height);
-    
-    // ==================== åŠŸèƒ½1: ç»˜åˆ¶åŸºæœ¬å›¾å½¢ ====================
+
+    // ==================== »æÖÆ1: »ù±¾ĞÎ×´ ====================
     printf("Drawing basic shapes...\n");
-    
-    // æ¸…å±ä¸ºæ·±è“è‰²èƒŒæ™¯
-    graphics_clear(0x00102040);  // æ·±è“è‰²
-    
-    // ç»˜åˆ¶ç½‘æ ¼èƒŒæ™¯
+
+    // ÉèÖÃ±³¾°É«
+    graphics_clear(0x00102040);  // ÉîÀ¶É«
+
+    // »æÖÆÍø¸ñ
     for (int i = 0; i < width; i += 20) {
-        draw_line(i, 0, i, height, 0x00204060);  // ç«–çº¿
+        draw_line(i, 0, i, height, 0x00204060);  // Ç³À¶É«
     }
     for (int i = 0; i < height; i += 20) {
-        draw_line(0, i, width, i, 0x00204060);  // æ¨ªçº¿
+        draw_line(0, i, width, i, 0x00204060);  // Ç³À¶É«
     }
-    
-    // ç»˜åˆ¶å„ç§åŸºæœ¬å›¾å½¢
-    draw_rectangle(50, 50, 100, 80, COLOR_RED);           // çº¢è‰²çŸ©å½¢è¾¹æ¡†
-    fill_rectangle(180, 50, 100, 80, COLOR_GREEN);        // å¡«å……ç»¿è‰²çŸ©å½¢
-    draw_circle(350, 90, 40, COLOR_BLUE);                 // è“è‰²åœ†å½¢è¾¹æ¡†
-    fill_circle(480, 90, 40, COLOR_YELLOW);               // å¡«å……é»„è‰²åœ†å½¢
-    draw_triangle(600, 50, 550, 130, 650, 130, COLOR_CYAN); // é’è‰²ä¸‰è§’å½¢
-    sleep(3); // æ˜¾ç¤º5ç§’åæ¸…å±
-    // ==================== åŠŸèƒ½2: åŠ è½½å¹¶æ˜¾ç¤º BMP å›¾åƒ ====================
+
+    // »æÖÆ¾ØĞÎ
+    draw_rectangle(50, 50, 100, 80, COLOR_RED);           // ºìÉ«¾ØĞÎ
+    fill_rectangle(180, 50, 100, 80, COLOR_GREEN);        // ÂÌÉ«Ìî³ä¾ØĞÎ
+    draw_circle(350, 90, 40, COLOR_BLUE);                 // À¶É«Ô²ĞÎ
+    fill_circle(480, 90, 40, COLOR_YELLOW);               // »ÆÉ«Ô²ĞÎ
+    draw_triangle(600, 50, 550, 130, 650, 130, COLOR_CYAN); // ÇàÉ«Èı½ÇĞÎ
+    sleep(3); // ÏÔÊ¾5ÃëÖÓ
+    // ==================== »æÖÆ2: ÏÔÊ¾BMPÍ¼Ïñ ====================
     printf("Loading and displaying BMP image...\n");
     BMPImage *image = bmp_load("image.bmp");
     if (image) {
@@ -53,22 +52,22 @@ int main() {
     } else {
         fprintf(stderr, "Failed to load BMP image\n");
     }   
-    sleep(3); // æ˜¾ç¤º5ç§’åæ¸…å±
+    sleep(3); // ÏÔÊ¾3ÃëÖÓ
     graphics_clear(COLOR_YELLOW);
-
-    // ==================== åŠŸèƒ½3: æ˜¾ç¤ºå­—ç¬¦å’Œå­—ç¬¦ä¸² ====================
+    
+    // ==================== »æÖÆ3: ÏÔÊ¾×Ö·ûºÍ×Ö·û´® ====================
     printf("Displaying characters and strings...\n");
     draw_string(50, height - 100, "231180007YKY!", COLOR_BLACK);
     draw_char(50, height - 70, 'N', COLOR_BLACK);
     draw_char(70, height - 70, 'J', COLOR_BLACK);
     draw_char(90, height - 70, 'U', COLOR_BLACK);
 
-    // ==================== åŠŸèƒ½4: æ˜¾ç¤ºæ±‰å­—å­—ç¬¦ä¸² ====================
+    // ==================== »æÖÆ4: ÏÔÊ¾ºº×Ö ====================
     printf("Displaying Chinese characters...\n");
-    draw_hzk16_string(100, 100, (const unsigned char *)"ä½ å¥½ï¼Œä¸–ç•Œï¼", 0x00FF00FF); // ç´«è‰²
+    draw_hzk16_string(100, 100, (const unsigned char *)"ÄÏ¾©´óÑ§µç×ÓÑ§ÔºÑî¿­Ô½", COLOR_BLACK);
 
-    // ==================== åŠŸèƒ½5: å°çƒåŠ¨ç”» ====================
-    sleep(10); // æš‚åœ10ç§’ï¼Œå‡†å¤‡æ˜¾ç¤ºå°çƒåŠ¨ç”»
+    // ==================== »æÖÆ5: ÏÔÊ¾¶¯»­ ====================
+    sleep(10); // ÔİÍ£10ÃëÖÓ×¼±¸ÏÔÊ¾¶¯»­
 
     graphics_clear(0x00000000);
 
@@ -76,21 +75,22 @@ int main() {
     Ball ball;
     ball_init(&ball, 400, 300, 20, 5, 3, COLOR_RED);
 
-    // åŠ¨ç”»å¾ªç¯
+    // ¿ªÊ¼¶¯»­
     for(int i=0; i<600; i++) {
-        // æ›´æ–°å°çƒä½ç½®
+        // ¸üĞÂÇòµÄÎ»ÖÃ
         ball_update(&ball, width, height);
 
-        // ç»˜åˆ¶å°çƒ
+        // »æÖÆÇò
         ball_draw(&ball);
 
-        // å»¶è¿Ÿ 16 æ¯«ç§’ï¼ˆçº¦ 60 FPSï¼‰
+        // ÔİÍ£ 16 ºÁÃëÒÔ´ïµ½ 60 FPS
         usleep(16000);
     }
 
 
-    // æ¸…ç†å›¾å½¢ç³»ç»Ÿ
+    // ½áÊø¶¯»­
     graphics_cleanup();
+    // ÊÍ·Åºº×Ö¿â
     free_hzk16_font();
     
     printf("Program completed successfully.\n");

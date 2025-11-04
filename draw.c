@@ -1,18 +1,18 @@
 // filepath: /home/kz/my_code/draw_code/project/draw.c
 #include "draw.h"
 
-// Frame Buffer ç›¸å…³å˜é‡
+// Frame Buffer Ïà¹Ø±äÁ¿
 static int fbfd = -1;
 static struct fb_var_screeninfo vinfo;
 static struct fb_fix_screeninfo finfo;
 static char *fbp = NULL;
 static long screensize = 0;
 
-// è£å‰ªåŒºåŸŸ
+// ²Ã¼ôÇøÓò
 static int clip_x = 0, clip_y = 0, clip_width = 0, clip_height = 0;
 static bool clipping_enabled = false;
 
-// åˆå§‹åŒ–å›¾å½¢ç³»ç»Ÿ
+// ³õÊ¼»¯Í¼ĞÎÏµÍ³
 int graphics_init(void) {
     fbfd = open("/dev/fb0", O_RDWR);
     if (fbfd == -1) {
@@ -46,7 +46,7 @@ int graphics_init(void) {
     return 0;
 }
 
-// æ¸…ç†å›¾å½¢ç³»ç»Ÿ
+// ÇåÀíÍ¼ĞÎÏµÍ³
 void graphics_cleanup(void) {
     if (fbp) {
         munmap(fbp, screensize);
@@ -59,21 +59,21 @@ void graphics_cleanup(void) {
     printf("Graphics cleanup completed.\n");
 }
 
-// è·å–å±å¹•åˆ†è¾¨ç‡
+// »ñÈ¡ÆÁÄ»·Ö±æÂÊ
 void graphics_get_resolution(int *width, int *height) {
     if (width) *width = vinfo.xres;
     if (height) *height = vinfo.yres;
 }
 
-// å¸¦è£å‰ªæ£€æŸ¥çš„åƒç´ ç»˜åˆ¶
+// ´ø²Ã¼ô¼ì²éµÄÏñËØ»æÖÆ
 void draw_pixel(int x, int y, uint32_t color) {
     if (!fbp) return;
     
-    // æ£€æŸ¥å±å¹•è¾¹ç•Œ
+    // ¼ì²éÆÁÄ»±ß½ç
     if (x < 0 || x >= (int)vinfo.xres || y < 0 || y >= (int)vinfo.yres)
         return;
     
-    // æ£€æŸ¥è£å‰ªåŒºåŸŸ
+    // ¼ì²é²Ã¼ôÇøÓò
     if (clipping_enabled) {
         if (x < clip_x || x >= clip_x + clip_width ||
             y < clip_y || y >= clip_y + clip_height)
@@ -94,7 +94,7 @@ void draw_pixel(int x, int y, uint32_t color) {
     }
 }
 
-// æ¸…å±
+// ÇåÆÁ
 void graphics_clear(uint32_t color) {
     if (!fbp) return;
     
@@ -105,7 +105,7 @@ void graphics_clear(uint32_t color) {
     }
 }
 
-// ç»˜åˆ¶ç›´çº¿ (Bresenhamç®—æ³•)
+// »æÖÆÖ±Ïß (BresenhamËã·¨)
 void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
     int dx = abs(x1 - x0);
     int dy = abs(y1 - y0);
@@ -130,7 +130,7 @@ void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
     }
 }
 
-// ç»˜åˆ¶çŸ©å½¢è¾¹æ¡†
+// »æÖÆ¾ØĞÎ±ß¿ò
 void draw_rectangle(int x, int y, int width, int height, uint32_t color) {
     draw_line(x, y, x + width, y, color);
     draw_line(x, y + height, x + width, y + height, color);
@@ -138,14 +138,14 @@ void draw_rectangle(int x, int y, int width, int height, uint32_t color) {
     draw_line(x + width, y, x + width, y + height, color);
 }
 
-// å¡«å……çŸ©å½¢
+// Ìî³ä¾ØĞÎ
 void fill_rectangle(int x, int y, int width, int height, uint32_t color) {
     for (int i = 0; i < height; i++) {
         draw_line(x, y + i, x + width, y + i, color);
     }
 }
 
-// ç»˜åˆ¶åœ†å½¢ (ä¸­ç‚¹åœ†ç®—æ³•)
+// »æÖÆÔ²ĞÎ (ÖĞµãÔ²Ëã·¨)
 void draw_circle(int center_x, int center_y, int radius, uint32_t color) {
     int x = radius;
     int y = 0;
@@ -170,7 +170,7 @@ void draw_circle(int center_x, int center_y, int radius, uint32_t color) {
     }
 }
 
-// å¡«å……åœ†å½¢
+// Ìî³äÔ²ĞÎ
 void fill_circle(int center_x, int center_y, int radius, uint32_t color) {
     for (int y = -radius; y <= radius; y++) {
         for (int x = -radius; x <= radius; x++) {
@@ -181,7 +181,7 @@ void fill_circle(int center_x, int center_y, int radius, uint32_t color) {
     }
 }
 
-// ç»˜åˆ¶ä¸‰è§’å½¢
+// »æÖÆÈı½ÇĞÎ
 void draw_triangle(int x1, int y1, int x2, int y2, int x3, int y3, uint32_t color) {
     draw_line(x1, y1, x2, y2, color);
     draw_line(x2, y2, x3, y3, color);

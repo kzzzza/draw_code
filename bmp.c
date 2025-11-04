@@ -1,7 +1,7 @@
 #include "bmp.h"
 
 
-// BMP æ–‡ä»¶å¤´ç»“æ„
+// BMP ÎÄ¼şÍ·½á¹¹
 #pragma pack(push, 1)
 typedef struct {
     uint16_t bfType;
@@ -26,7 +26,7 @@ typedef struct {
 } BMPInfoHeader;
 #pragma pack(pop)
 
-// åŠ è½½ BMP å›¾åƒ
+// ¼ÓÔØ BMP Í¼Ïñ
 BMPImage *bmp_load(const char *filename) {
     FILE *file = fopen(filename, "rb");
     if (!file) {
@@ -36,7 +36,7 @@ BMPImage *bmp_load(const char *filename) {
 
     BMPFileHeader fileHeader;
     fread(&fileHeader, sizeof(BMPFileHeader), 1, file);
-    if (fileHeader.bfType != 0x4D42) { // æ£€æŸ¥ "BM" æ ‡å¿—
+    if (fileHeader.bfType != 0x4D42) { // ¼ì²é "BM" ±êÖ¾
         fprintf(stderr, "Error: Not a valid BMP file\n");
         fclose(file);
         return NULL;
@@ -71,7 +71,7 @@ BMPImage *bmp_load(const char *filename) {
             if (infoHeader.biBitCount == 32) {
                 fread(&a, 1, 1, file);
             }
-            int pixel_y = (infoHeader.biHeight > 0) ? (height - y - 1) : y; // BMP åƒç´ ä»ä¸‹åˆ°ä¸Šå­˜å‚¨
+            int pixel_y = (infoHeader.biHeight > 0) ? (height - y - 1) : y; // BMP ÏñËØ´ÓÏÂµ½ÉÏ´æ´¢
             image->pixels[pixel_y * width + x] = (a << 24) | (r << 16) | (g << 8) | b;
         }
         fseek(file, row_padded - width * (infoHeader.biBitCount / 8), SEEK_CUR);
@@ -81,7 +81,7 @@ BMPImage *bmp_load(const char *filename) {
     return image;
 }
 
-// é‡Šæ”¾ BMP å›¾åƒ
+// ÊÍ·Å BMP Í¼Ïñ
 void bmp_free(BMPImage *image) {
     if (image) {
         free(image->pixels);
@@ -89,7 +89,7 @@ void bmp_free(BMPImage *image) {
     }
 }
 
-// æ˜¾ç¤º BMP å›¾åƒ
+// ÏÔÊ¾ BMP Í¼Ïñ
 void bmp_draw(int x, int y, BMPImage *image) {
     if (!image) return;
 
